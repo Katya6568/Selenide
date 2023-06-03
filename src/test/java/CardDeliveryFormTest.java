@@ -27,5 +27,5 @@ public class CardDeliveryFormTest {
         $$("[type= 'button']").filter(Condition.visible).last().click();
         $("[data-test-id= 'notification']").shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
-    
+
 }
