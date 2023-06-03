@@ -17,10 +17,9 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
     testImplementation 'com.codeborne:selenide:6.12.3'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:5.3.3'
-}
+    }
 
 test {
     useJUnitPlatform()
-    systemProperty 'selenide_headless', System.getProperty('selenide_headless')
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
