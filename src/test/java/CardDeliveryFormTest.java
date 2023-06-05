@@ -27,5 +27,19 @@ public class CardDeliveryFormTest {
         $$("[type= 'button']").filter(Condition.visible).last().click();
         $("[data-test-id= 'notification']").shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
+    @Test
+    public void shouldBeRightNotificationText() {
+        open("http://localhost:9999/");
+        $("[data-test-id= 'city'] input").setValue("Владивосток");
+        $("[data-test-id= 'date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        $("[data-test-id= 'date'] input").setValue(generateDate(3, "dd.MM.yyyy"));
+        $("[data-test-id= 'name'] input").setValue("Игнатов Олег");
+        $("[data-test-id= 'phone'] input").setValue("+78542360124");
+        $("[data-test-id= 'agreement']").click();
+        $$("[type= 'button']").filter(Condition.visible).last().click();
+        $(".notification__content")
+                .shouldHave(Condition.text("Встреча успешно забронирована на " + generateDate(3, "dd.MM.yyyy")), Duration.ofSeconds(15))
+                .shouldBe(Condition.visible);
+    }
 
 }
